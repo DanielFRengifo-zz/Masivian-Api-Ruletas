@@ -7,6 +7,19 @@ public class HelloWorld
 	public static void main(String[] args) 
 	{
         	ArrayList<Ruleta> ruletas = new ArrayList<Ruleta>(); 
+		
+		get("/Ruletas", (request, response) -> 
+		{ 
+			String resp = "";
+			for (Ruleta ruleta : ruletas) 
+			{
+				resp += "Ruleta: " + ruleta.getId();
+				resp += " Estado: " + (ruleta.getOpen() ? "ABIERTA" : "CERRADA");
+				resp += " || ";
+			}  
+			return resp;
+		});
+		
 		post("/Ruleta", (request, response) -> 
 		{
 			Ruleta ruleta = new Ruleta(ruletas.size());
